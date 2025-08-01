@@ -1,3 +1,4 @@
+// app/sign-in/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -8,7 +9,6 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [token, setToken] = useState("");
   const router = useRouter();
 
   const handleAuth = async () => {
@@ -21,11 +21,8 @@ export default function SignIn() {
       });
       const data = await res.json();
       if (res.ok) {
-        setToken(data.token);
-        setEmail("");
-        setPassword("");
-        setError("");
-        router.push(`/flashcards/${data.userId}/`);
+        localStorage.setItem("token", data.token); // Store token
+        router.push(`/flashcards/${data.userId}/`); // Ensure correct path with /page
       } else {
         setError(data.message || "Authentication failed");
       }

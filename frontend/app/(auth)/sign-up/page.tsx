@@ -1,3 +1,4 @@
+// app/sign-up/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -8,11 +9,9 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [token, setToken] = useState("");
   const router = useRouter();
 
   const handleAuth = async () => {
-    // Password validation
     const passwordRegex =
       /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
     if (!passwordRegex.test(password)) {
@@ -31,11 +30,8 @@ export default function SignUp() {
       });
       const data = await res.json();
       if (res.ok) {
-        setToken(data.token);
-        setEmail("");
-        setPassword("");
-        setError("");
-        router.push("/sign-in");
+        localStorage.setItem("token", data.token); // Store token
+        router.push(`/flashcards/${data.userId}/page`); // Redirect to flashcards page
       } else {
         setError(data.message || "Authentication failed");
       }
