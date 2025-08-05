@@ -174,7 +174,7 @@ const FlashCards = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    router.push("/sign-in");
+    router.push("/");
   };
 
   const toggleFlip = (cardId: string) => {
