@@ -14,7 +14,7 @@ export default function SignIn() {
   const handleAuth = async () => {
     setIsLoading(true);
     try {
-      const endpoint = "http://localhost:5000/api/auth/signin";
+      const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/signin`;
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

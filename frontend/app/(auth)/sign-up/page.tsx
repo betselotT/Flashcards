@@ -23,7 +23,7 @@ export default function SignUp() {
 
     setIsLoading(true);
     try {
-      const endpoint = "http://localhost:5000/api/auth/signup";
+      const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/api/auth/signup`;
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

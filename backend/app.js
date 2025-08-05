@@ -24,7 +24,10 @@ const swaggerOptions = {
       title: "To-Do API",
       version: "1.0.0",
     },
-    servers: [{ url: "http://localhost:5000" }],
+    servers: [
+      { url: "http://localhost:5000" },
+      { url: "https://flashcards-backend-gwe3.onrender.com" },
+    ],
     components: {
       securitySchemes: {
         bearerAuth: {

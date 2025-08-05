@@ -37,9 +37,12 @@ const FlashCards = () => {
       }
       setIsLoading(true);
       try {
-        const response = await fetch("http://localhost:5000/api/flashcards", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/flashcards`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         if (response.ok) {
           const data = await response.json();
           const userFlashcards = data.filter(
@@ -67,14 +70,17 @@ const FlashCards = () => {
     }
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/flashcards", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ ...newFlashcard, userId: params.id }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/flashcards`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ ...newFlashcard, userId: params.id }),
+        }
+      );
       if (response.ok) {
         const data = await response.json();
         setFlashcards([...flashcards, data]);
@@ -102,7 +108,7 @@ const FlashCards = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/flashcards/${editingFlashcard._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/flashcards/${editingFlashcard._id}`,
         {
           method: "PUT",
           headers: {
@@ -142,7 +148,7 @@ const FlashCards = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/flashcards/${deletingFlashcard._id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/flashcards/${deletingFlashcard._id}`,
         {
           method: "DELETE",
           headers: {
