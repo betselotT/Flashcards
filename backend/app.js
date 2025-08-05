@@ -7,11 +7,17 @@ const authRoutes = require("./routes/authRoutes");
 const flashcardRoutes = require("./routes/flashcardRoutes");
 
 const app = express();
+
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://flashcards-frontend-2ap4.onrender.com",
+];
+
 app.use(cors());
 app.use(express.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
